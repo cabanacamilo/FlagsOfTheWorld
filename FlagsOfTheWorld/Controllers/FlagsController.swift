@@ -36,12 +36,29 @@ class FlagsController: UITableViewController {
         let button = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editingFlag))
         return button
     }()
+    
+    lazy var addButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToEditAndAdd))
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+        setTableView()
+        setNavigationBar()
+    }
+    
+    func setNavigationBar() {
+        navigationItem.title = "Home"
         navigationItem.leftBarButtonItem = editButton
+        navigationItem.rightBarButtonItem = addButton
+    }
+    
+    func setTableView() {
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 44
         view.backgroundColor = .white
+        tableView.register(UINib(nibName: "FlagTableViewCell", bundle: nil), forCellReuseIdentifier: cellID)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -49,16 +66,15 @@ class FlagsController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! FlagTableViewCell
         let flag = flags[indexPath.row]
-        cell.textLabel?.text = "\(flag.flag) - \(flag.country)"
-        cell.detailTextLabel?.text = flag.region
+        cell.configure(flag: flag)
+        cell.showsReorderControl = true
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let flag = flags[indexPath.row]
-        print(flag)
+        configuratePush(title: "Edit", index: indexPath, flag: flags[indexPath.row])
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
@@ -67,9 +83,41 @@ class FlagsController: UITableViewController {
         tableView.reloadData()
     }
     
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            flags.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
     @objc func editingFlag(_ sender: UIBarButtonItem) {
         let editingMode = tableView.isEditing
         tableView.setEditing(!editingMode, animated: true)
     }
-
+    
+    @objc func goToEditAndAdd(_ sender: UIBarButtonItem) {
+        configuratePush(title: "Add", index: nil, flag: nil)
+    }
+    
+    func configuratePush(title: String, index: IndexPath?, flag: Flag?) {
+        let editAndAdd = EditAndAddController()
+        editAndAdd.navigationItem.title = title
+        editAndAdd.flagsController = self
+        editAndAdd.index = index
+        editAndAdd.flag = flag
+        navigationController?.pushViewController(editAndAdd, animated: true)
+    }
+    
+    func saveData(index: IndexPath?, flag: Flag) {
+        if index != nil {
+            flags[index?.row ?? Int()] = flag
+        } else {
+            flags.append(flag)
+        }
+        tableView.reloadData()
+    }
 }

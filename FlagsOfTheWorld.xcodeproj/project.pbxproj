@@ -13,6 +13,9 @@
 		2F9F34CD24D7D305003D7CB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9F34CC24D7D305003D7CB1 /* Assets.xcassets */; };
 		2F9F34D024D7D305003D7CB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F9F34CE24D7D305003D7CB1 /* LaunchScreen.storyboard */; };
 		2F9F34D924D7D3CC003D7CB1 /* Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9F34D824D7D3CC003D7CB1 /* Flag.swift */; };
+		2F9F34E424D7F919003D7CB1 /* FlagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9F34E224D7F919003D7CB1 /* FlagTableViewCell.swift */; };
+		2F9F34E524D7F919003D7CB1 /* FlagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F9F34E324D7F919003D7CB1 /* FlagTableViewCell.xib */; };
+		2F9F34F024D80750003D7CB1 /* EditAndAddController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9F34EE24D80750003D7CB1 /* EditAndAddController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		2F9F34CF24D7D305003D7CB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F9F34D124D7D305003D7CB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F9F34D824D7D3CC003D7CB1 /* Flag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
+		2F9F34E224D7F919003D7CB1 /* FlagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagTableViewCell.swift; sourceTree = "<group>"; };
+		2F9F34E324D7F919003D7CB1 /* FlagTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlagTableViewCell.xib; sourceTree = "<group>"; };
+		2F9F34EE24D80750003D7CB1 /* EditAndAddController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAndAddController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,7 @@
 		2F9F34C224D7D303003D7CB1 /* FlagsOfTheWorld */ = {
 			isa = PBXGroup;
 			children = (
+				2F9F34DB24D7E3FE003D7CB1 /* Views */,
 				2F9F34DA24D7DE59003D7CB1 /* Controllers */,
 				2F9F34D724D7D3AF003D7CB1 /* Models */,
 				2F9F34C324D7D303003D7CB1 /* AppDelegate.swift */,
@@ -79,8 +86,18 @@
 			isa = PBXGroup;
 			children = (
 				2F9F34C724D7D303003D7CB1 /* FlagsController.swift */,
+				2F9F34EE24D80750003D7CB1 /* EditAndAddController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2F9F34DB24D7E3FE003D7CB1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2F9F34E224D7F919003D7CB1 /* FlagTableViewCell.swift */,
+				2F9F34E324D7F919003D7CB1 /* FlagTableViewCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +160,7 @@
 			files = (
 				2F9F34D024D7D305003D7CB1 /* LaunchScreen.storyboard in Resources */,
 				2F9F34CD24D7D305003D7CB1 /* Assets.xcassets in Resources */,
+				2F9F34E524D7F919003D7CB1 /* FlagTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,7 +174,9 @@
 				2F9F34C824D7D303003D7CB1 /* FlagsController.swift in Sources */,
 				2F9F34C424D7D303003D7CB1 /* AppDelegate.swift in Sources */,
 				2F9F34C624D7D303003D7CB1 /* SceneDelegate.swift in Sources */,
+				2F9F34F024D80750003D7CB1 /* EditAndAddController.swift in Sources */,
 				2F9F34D924D7D3CC003D7CB1 /* Flag.swift in Sources */,
+				2F9F34E424D7F919003D7CB1 /* FlagTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
